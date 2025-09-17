@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% load static %}
+
+<header class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+    <!-- Imagen -->
+    <div class="flex justify-center lg:justify-end">
+      <img src="{% static 'portfolio/profile.jpg' %}" alt="Foto de Jimmy García"
+        class="w-64 h-64 rounded-full shadow-lg object-cover lg:w-96 lg:h-96">
+    </div>
+
+    <!-- Texto -->
+    <div class="text-center lg:text-left space-y-6">
+      <h1 class="text-4xl font-extrabold sm:text-5xl">
+        I’m <span class="text-indigo-400">Jimmy García</span>
+      </h1>
+      <h2 class="text-xl font-semibold text-gray-300 sm:text-2xl">
+        Full Stack Developer
+      </h2>
+      <p class="text-gray-400 max-w-lg mx-auto lg:mx-0">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Rerum perferendis aspernatur laboriosam deserunt sint ratione odit
+        repellat consequuntur eaque officia magnam corrupti.
+      </p>
+
+      <!-- Botón -->
+      <div>
+        <a href="{% static 'portfolio/resume.pdf' %}" target="_blank" class="inline-block px-6 py-3 bg-indigo-500 hover:bg-indigo-600 
+                  text-white font-medium rounded-lg shadow-md transition">
+          Download CV
+        </a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+
+<section class="bg-gray-100 dark:bg-gray-900 py-16">
+  <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+
+    <!-- Línea decorativa -->
+    <div class="flex justify-center">
+      <span class="inline-block w-16 h-1 bg-indigo-500 rounded-full"></span>
+    </div>
+
+    <!-- Título -->
+    <h3 class="text-3xl font-bold text-gray-800 dark:text-white">
+      My Projects
+    </h3>
+
+    <!-- Descripción -->
+    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis fugiat
+      ipsam? Ut minus quasi hic aspernatur cum sapiente expedita facilis suscipit
+      sequi veritatis natus.
+    </p>
+  </div>
+</section>
+
+
+<section class="bg-gray-50 dark:bg-gray-900 py-16">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Grid de proyectos -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {% for project in projects %}
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
+
+        <!-- Imagen del proyecto -->
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover">
+
+        <!-- Contenido -->
+        <div class="p-6 space-y-3">
+          <h4 class="text-xl font-semibold text-gray-800 dark:text-white">
+            {{ project.title }}
+          </h4>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            {{ project.description }}
+          </p>
+
+          {% if project.url %}
+          <a href="{{ project.url }}" target="_blank" class="inline-block mt-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 
+                    text-white text-sm font-medium rounded-lg transition">
+            View Project
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+{% endblock %}

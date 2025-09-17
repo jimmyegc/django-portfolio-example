@@ -1,0 +1,13 @@
+{% load static %}
+
+<nav class="bg-black text-white w-full">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-lg font-semibold">Portfolio</a>
+      <ul class="flex space-x-4">
+        <li><a href="{% url 'blog:posts' %}" class="hover:underline">Blog</a></li>
+        <li><a href="{% static 'portfolio/resume.pdf' %}" target="_blank" class="hover:underline">Download CV</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
