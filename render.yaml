@@ -6,9 +6,9 @@ services:
     buildCommand: |
       python -m pip install --upgrade pip
       python -m pip install -r requirements.txt
-      $(which python) manage.py migrate
-      $(which python) manage.py collectstatic --noinput
-      $(which python) manage.py initadmin
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+      python manage.py initadmin
     startCommand: gunicorn django_portfolio.wsgi
     envVars:
       - key: DJANGO_SETTINGS_MODULE
