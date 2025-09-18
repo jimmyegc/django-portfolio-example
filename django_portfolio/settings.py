@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=8(4x4)q0tmkmqp%75zil6k#=hwh91es6%#y+y+0%v7$9c!fgv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False  
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -82,10 +82,15 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+    "default": dj_database_url.config(
+        default="postgresql://menikmati:wzq1QqdJThxOG5953RSNITLfnJKk7AUe@dpg-d3633i6uk2gs738pem10-a/dbportfolio_xb91",
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
