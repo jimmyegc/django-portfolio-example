@@ -15,7 +15,5 @@ services:
     postDeployCommand: |
       # Migraciones y static files
       python manage.py migrate
-      python manage.py collectstatic --noinput || true
-
-      # Crear o actualizar superusuario automáticamente
+      python manage.py collectstatic --noinput      
       python manage.py initadmin
