@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: django-portfolio
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn django_portfolio.wsgi"
+    postDeployCommand: "python manage.py migrate && python manage.py collectstatic --noinput"
