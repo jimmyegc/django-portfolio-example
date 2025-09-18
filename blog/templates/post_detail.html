@@ -1,14 +1,28 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h2>Post Detail</h2>
+<div class="max-w-4xl mx-auto py-8 px-4">
 
-{{ post_id }}
+  <!-- Botón regresar -->
+  <a href="{% url 'blog:posts' %}"
+    class="inline-block mb-6 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+    ← Regresar
+  </a>
 
-<h2>{{ post.title }}</h2>
-<h3>{{ post.created_at}} </h3>
+  <!-- Post -->
+  <article class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
 
-<img src="{{ post.image.url }}" alt="{{ post.title }}" width="300px">
-<p>{{ post.description|safe }}</p>
+    <!-- Imagen del post -->
+    <img class="w-full h-64 object-cover" src="{{ post.image.url }}" alt="{{ post.title }}">
 
+    <!-- Contenido -->
+    <div class="p-6">
+      <p class="text-sm text-gray-500 dark:text-gray-400 uppercase mb-2">{{ post.created_at|date:"M d, Y" }}</p>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{{ post.title }}</h1>
+      <div class="text-gray-700 dark:text-gray-300 leading-relaxed space-y-4">
+        {{ post.description|safe }}
+      </div>
+    </div>
+  </article>
+</div>
 {% endblock %}
