@@ -2,9 +2,25 @@ services:
   - type: web
     name: django-portfolio
     env: python
+    plan: free
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn django_portfolio.wsgi"
+    envVars:
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: "admin"
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: "admin@example.com"
+      - key: DJANGO_SUPERUSER_PASSWORD
+        value: "admin123"
     postDeployCommand: |
+      # Activar virtualenv (si Render no lo hace automáticamente)
+      if [ -f .venv/bin/activate ]; then
+        source .venv/bin/activate
+      fi
+
+      # Migraciones y static files
       python manage.py migrate
       python manage.py collectstatic --noinput || true
+
+      # Crear superusuario automáticamente
       python manage.py initadmin
