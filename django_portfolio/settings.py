@@ -84,15 +84,15 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-    #}
-    "default": dj_database_url.config(
-        default="postgresql://menikmati:wzq1QqdJThxOG5953RSNITLfnJKk7AUe@dpg-d3633i6uk2gs738pem10-a/dbportfolio_xb91",
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+    #"default": dj_database_url.config(
+    #    default="postgresql://menikmati:wzq1QqdJThxOG5953RSNITLfnJKk7AUe@dpg-d3633i6uk2gs738pem10-a/dbportfolio_xb91",
+    #    conn_max_age=600,
+    #    ssl_require=True
+    #)
 }
 
 
@@ -131,15 +131,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-#STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Agregamos la carpeta static de la app portfolio
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "portfolio", "static"),
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "staticfiles", "media")
-
-# Hacer que Django copie también media dentro de collectstatic
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "portfolio/static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
