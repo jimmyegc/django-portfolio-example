@@ -5,5 +5,3 @@ media
 venv
 
 db.sqlite3
-
-staticfiles
